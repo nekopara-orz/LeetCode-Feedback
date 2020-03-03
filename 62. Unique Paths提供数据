@@ -1,0 +1,64 @@
+name: Bug 反馈，提供数据
+about: 
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+** Bug 类型**
+题目数据覆盖面不够广
+
+
+**描述**
+对于一些程序本应该被卡数据但是能通过
+
+**你提交或者运行的代码**
+```
+// my answer能通过这条数据
+
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        long long ans = 1;
+        int j = 1;
+        if(m > n) swap(m,n);
+        for(int i = n; i <= m + n - 2;i++)
+        {
+            ans = ans * i / j;
+            j++;
+        }
+        return ans;
+    }
+};
+
+// 会被我设计的用例卡住，但是能通过当前所有数据的程序。
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+		if(m<n)swap(m,n);
+		long long ans=1;
+		for(int i=m;i<=m+n-2;i++)
+			ans*=i;
+		
+		for(int i=1;i<=n-1;i++)
+			ans/=i;
+			
+		return (int)ans;
+    }
+};
+```
+
+**期望行为**
+增加数据
+
+Input: 
+16
+16
+
+Output: 
+155117520
+
+
+
+通过加上上面的用例能让一些用公式计算的不得不优化他们的公式。
